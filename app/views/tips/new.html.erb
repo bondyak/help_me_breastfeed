@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @tip.errors.any? %>
+  <% @tip.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Tip</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_tip" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for tips_summary -->
+      <div class="form-group">
+        <label for="tips_summary" class="control-label">
+          Tips summary
+        </label>
+
+        <input type="text" id="tips_summary" name="tips_summary" placeholder="Tips summary" class="form-control" value="<%= @tip.tips_summary %>">
+      </div>
+
+      <!-- Label and input for min_age -->
+      <div class="form-group">
+        <label for="min_age" class="control-label">
+          Min age
+        </label>
+
+        <input type="text" id="min_age" name="min_age" placeholder="Min age" class="form-control" value="<%= @tip.min_age %>">
+      </div>
+
+      <!-- Label and input for max_age -->
+      <div class="form-group">
+        <label for="max_age" class="control-label">
+          Max age
+        </label>
+
+        <input type="text" id="max_age" name="max_age" placeholder="Max age" class="form-control" value="<%= @tip.max_age %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Tip
+      </button>
+      or
+      <a href="/tips">Cancel</a>
+    </form>
+  </div>
+</div>

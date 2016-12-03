@@ -1,0 +1,94 @@
+<div class="page-header">
+  <h3>Issue #<%= @issue.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Issue summary</dt>
+      <dd><%= @issue.issue_summary %></dd>
+
+      <dt>Min age</dt>
+      <dd><%= @issue.min_age %></dd>
+
+      <dt>Max age</dt>
+      <dd><%= @issue.max_age %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/issues" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/issues/<%= @issue.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_issue/<%= @issue.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Issue has many resources -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Resources
+      </li>
+
+      <% @issue.resources.each do |resource| %>
+        <li class="list-group-item">
+          <a href="/resources/<%= resource.id %>">
+            <%= resource.resource_summary %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/resources/<%= resource.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/resources/<%= resource.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_resource/<%= resource.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_resource" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for resource_summary -->
+      <div class="form-group">
+        <label for="resource_summary" class="control-label">
+          Resource summary
+        </label>
+
+        <input type="text" id="resource_summary" name="resource_summary" placeholder="Resource summary" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for issue_id -->
+      <input type="hidden" name="issue_id" value="<%= @issue.id %>">
+
+      <!-- Label and input for resource_url -->
+      <div class="form-group">
+        <label for="resource_url" class="control-label">
+          Resource url
+        </label>
+
+        <input type="text" id="resource_url" name="resource_url" placeholder="Resource url" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Resource
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>

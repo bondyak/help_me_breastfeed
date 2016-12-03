@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>Tip #<%= @tip.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Tips summary</dt>
+      <dd><%= @tip.tips_summary %></dd>
+
+      <dt>Min age</dt>
+      <dd><%= @tip.min_age %></dd>
+
+      <dt>Max age</dt>
+      <dd><%= @tip.max_age %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tips" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tips/<%= @tip.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_tip/<%= @tip.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
