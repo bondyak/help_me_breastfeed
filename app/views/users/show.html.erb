@@ -20,3 +20,36 @@
     </div>
   </div>
 </div>
+
+<!-- A User has many babies -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Babies
+      </li>
+
+      <% @user.babies.each do |baby| %>
+        <li class="list-group-item">
+          <a href="/babies/<%= baby.id %>">
+            <%= baby.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/babies/<%= baby.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <%if current_user == baby.user %>
+              <a href="/babies/<%= baby.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_baby/<%= baby.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
