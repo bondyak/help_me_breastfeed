@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h3>Baby #<%= @baby.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @baby.name %></dd>
+
+      <dt>Birthdate</dt>
+      <dd><%= @baby.birthdate %></dd>
+
+      <dt>User</dt>
+      <dd>
+        <% if @baby.user.present? %>
+          <a href="/users/<%= @baby.user_id %>">
+            <%= @baby.user.email %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/babies" class="btn btn-primary">
+        Back
+      </a>
+      <% if current_user == @baby.user %>
+        <a href="/babies/<%= @baby.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_baby/<%= @baby.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
