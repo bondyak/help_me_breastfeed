@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @resource.errors.any? %>
+  <% @resource.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Resource</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_resource" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for resource_summary -->
+      <div class="form-group">
+        <label for="resource_summary" class="control-label">
+          Resource summary
+        </label>
+
+        <input type="text" id="resource_summary" name="resource_summary" placeholder="Resource summary" class="form-control" value="<%= @resource.resource_summary %>">
+      </div>
+
+      <!-- Label and input for issue_id -->
+      <div class="form-group">
+        <label for="issue_id" class="control-label">
+          Issue
+        </label>
+
+        <%= select_tag(:issue_id, options_from_collection_for_select(Issue.all, :id, :issue_summary, @resource.issue_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for resource_url -->
+      <div class="form-group">
+        <label for="resource_url" class="control-label">
+          Resource url
+        </label>
+
+        <input type="text" id="resource_url" name="resource_url" placeholder="Resource url" class="form-control" value="<%= @resource.resource_url %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Resource
+      </button>
+      or
+      <a href="/resources">Cancel</a>
+    </form>
+  </div>
+</div>
