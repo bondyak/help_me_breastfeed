@@ -1,7 +1,9 @@
 class TipsController < ApplicationController
   def index
     @q = Tip.ransack(params[:q])
-    @tips = @q.result(:distinct => true).includes().page(params[:page]).per(10)
+    # @tips = @q.result(:distinct => true).includes().page(params[:page]).per(10)
+    # threw error on .includes()
+    @tips = @q.result(:distinct => true).page(params[:page]).per(10)
 
     render("tips/index.html.erb")
   end
