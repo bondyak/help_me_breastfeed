@@ -6,5 +6,7 @@ class Baby < ApplicationRecord
   # Indirect associations
 
   # Validations
+  validates :name, :presence => true
+  validates :birthdate, :presence => true
 
 end

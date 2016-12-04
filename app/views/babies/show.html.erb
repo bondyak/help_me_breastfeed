@@ -9,7 +9,7 @@
       <dd><%= @baby.name %></dd>
 
       <dt>Birthdate</dt>
-      <dd><%= @baby.birthdate %></dd>
+      <dd><%= @baby.birthdate.strftime('%B %e, %Y') %></dd>
 
       <dt>User</dt>
       <dd>

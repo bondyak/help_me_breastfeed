@@ -32,7 +32,7 @@ class BabiesController < ApplicationController
     @baby = Baby.new
 
     @baby.name = params[:name]
-    @baby.birthdate = params[:birthdate]
+    @baby.birthdate = Chronic.parse(params[:birthdate])
     @baby.user_id = params[:user_id]
 
     save_status = @baby.save

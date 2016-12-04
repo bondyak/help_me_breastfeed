@@ -33,11 +33,18 @@
           Birthdate
         </label>
 
-        <input type="text" id="birthdate" name="birthdate" placeholder="Birthdate" class="form-control" value="<%= @baby.birthdate %>">
+
+
+        <div class='input-group date' id='datetimepicker1'>
+            <input type="text" id="birthdate" name="birthdate" placeholder="Birthdate" class="form-control" value="<%= @baby.birthdate.strftime('%B %e, %Y') %>">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
       </div>
 
-      
-      
+
+
 
       <button class="btn btn-warning">
         Update Baby
@@ -47,3 +54,9 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>

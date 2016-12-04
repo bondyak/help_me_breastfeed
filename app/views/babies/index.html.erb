@@ -121,7 +121,7 @@
       <% @babies.each do |baby| %>
       <tr>
         <td><%= baby.name %></td>
-        <td><%= baby.birthdate %></td>
+        <td><%= baby.birthdate.strftime('%B %e, %Y') %></td>
         <td>
           <% if baby.user.present? %>
             <a href="/users/<%= baby.user.id %>">
@@ -131,7 +131,7 @@
         </td>
         <td>
           <a href="/babies/<%= baby.id %>" class="btn btn-primary">Show</a>
-          
+
           <% if current_user == baby.user %>
             <a href="/babies/<%= baby.id %>/edit" class="btn btn-warning">Edit</a>
             <a href="/delete_baby/<%= baby.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
